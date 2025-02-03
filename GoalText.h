@@ -1,14 +1,16 @@
 #include <SFML/Graphics.hpp>
 
-class GoalText
+class AGoalText
 {
-    sf::Time elapsedTime;
-    float progress;
+    sf::Time ElapsedTime;
+    float Progress;
 public:
-    sf::Sprite sprite;
-    sf::Texture texture;
-    sf::Clock clock;
-    sf::Time time;
-    GoalText();
-    void render(sf::RenderWindow& window);
+    sf::Sprite Sprite;
+    sf::Texture Texture;
+    sf::Clock Clock;
+    sf::Time Time;
+    AGoalText();
+    void render(sf::RenderWindow& Window);
 };
+
+//Texto que se dibuja al hacer un gol con una pequeña animacion

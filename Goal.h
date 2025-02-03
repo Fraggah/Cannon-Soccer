@@ -1,17 +1,20 @@
 #include <SFML/Graphics.hpp>
 
-class Goal
+class AGoal
 {
-    float x;
-    float y;
-    sf::Texture texture;
-    sf::Clock clock;
-    sf::Time time{ sf::milliseconds(50) };
+    float X;
+    float Y;
+    sf::Texture Texture;
+    sf::Clock Clock;
+    sf::Time Time{ sf::milliseconds(50) };
 public:
-    bool isActive = false;
-    float radius;
-    sf::Sprite sprite;
-    Goal(float _x, float _y);
+    bool bIsActive = false;
+    float Radius;
+    sf::Sprite Sprite;
+    AGoal(float _X, float _Y);
     void activate();
     void update();
 };
+
+//Arco, lo interesante a destacar es la animacion del gol
+//Resultado de la convinacion de metodos activate() y update()

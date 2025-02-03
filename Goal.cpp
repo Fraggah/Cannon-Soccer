@@ -1,34 +1,38 @@
 #include "Goal.h"
 
-Goal::Goal(float _x, float _y)
+AGoal::AGoal(float _X, float _Y)
 {
-    radius = 5;
-    x = _x;
-    y = _y;
-    sprite.setOrigin(5, 5);
-    sprite.setPosition(_x, _y);
-    texture.loadFromFile("sprites/goal.png");
-    sprite.setTexture(texture);
+    Radius = 5;
+    X = _X;
+    Y = _Y;
+    Sprite.setOrigin(5, 5);
+    Sprite.setPosition(_X, _Y);
+    Texture.loadFromFile("sprites/goal.png");
+    Sprite.setTexture(Texture);
 }
 
-void Goal::activate()
+//Paso la variable a true para que pueda ejecutar la logica del update
+//Tambien reseteo el reloj, ya que este se inicia en la creacion del objeto
+void AGoal::activate()
 {
-    isActive = true;
-    clock.restart();
+    bIsActive = true;
+    Clock.restart();
 }
 
-void Goal::update()
+//la "Animacion" consta de un pequeño aumento de la scala que se resetea
+//cuando Clock llega al valor de Time
+void AGoal::update()
 {
-    if (isActive)
+    if (bIsActive)
     {
-        if (clock.getElapsedTime() > time)
+        if (Clock.getElapsedTime() > Time)
         {
-            sprite.setScale(1.2, 1.2);
-            isActive = false;
+            Sprite.setScale(1.2, 1.2);
+            bIsActive = false;
         }
     }
     else
     {
-        sprite.setScale(1, 1);
+        Sprite.setScale(1, 1);
     }
 }

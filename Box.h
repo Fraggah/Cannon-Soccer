@@ -1,16 +1,18 @@
 #include <SFML/Graphics.hpp>
 #include "Box2DHelper.h"
 
-class Box : public Box2DHelper
+class ABox : public Box2DHelper
 {
-    float x;
-    float y;
-    sf::Texture texture;
+    float X;
+    float Y;
+    sf::Texture Texture;
 public:
-    b2Body* physics;
-    sf::Sprite sprite;
-    bool isEnabled = false;
-    Box(b2World& mundo, float _x, float _y);
-    void render(sf::RenderWindow& window);
-    void setOnOff(bool on);
+    b2Body* Physics;
+    sf::Sprite Sprite;
+    bool bIsEnabled = false;
+    ABox(b2World& World, float _X, float _Y);
+    void render(sf::RenderWindow& Window);
+    void setOnOff(bool On);
 };
+
+//Leer Ball... es lo mismo pero con menos logica.

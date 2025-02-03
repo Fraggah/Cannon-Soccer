@@ -1,10 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include "Particle.h"
 
-class CanonShot : public Particle
+class ACannonShoot : public AParticle
 {
 public:
-    CanonShot(float _x, float _y);
+    ACannonShoot(float _x, float _y);
     void update() override;
 };
+
+//Lo mismo que BoxParticle...
 

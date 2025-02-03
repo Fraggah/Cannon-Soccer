@@ -1,36 +1,43 @@
 #include "Background.h"
 
-Background::Background()
+ABackground::ABackground()
 {
-    texture.loadFromFile("sprites/animatedB.png");
-    sprite.setTexture(texture);
-    sprite.setTextureRect(textureRect1);
-    sf::Color color = sprite.getColor();
-    color.a = 140;
-    sprite.setColor(color);
+    Texture.loadFromFile("sprites/animatedB.png");
+    Sprite.setTexture(Texture);
+    Sprite.setTextureRect(TRect1);
+    // La forma que encontré de bajar la opacidad es:
+    // 1 - Capturar el valor del color del sprite en una variable
+    // 2 - Bajar el valor del canal alfa, por defecto viene en 255
+    // 3 - Setear el nuevo valor sobre el sprite original
+    sf::Color Color = Sprite.getColor();
+    Color.a = 140;
+    Sprite.setColor(Color);
 }
 
-void Background::update()
+void ABackground::update()
 {
-    if (clock.getElapsedTime() > time)
+    // Mi manera de hacer funcionar las animaciones es reseteando un reloj
+    // y por cada reset le asigno  un IntRect diferente, el tiempo de reset
+    // esta seteado en la variable Time
+    if (Clock.getElapsedTime() > Time)
     {
-        if (sprite.getTextureRect() == textureRect1)
+        if (Sprite.getTextureRect() == TRect1)
         {
-            sprite.setTextureRect(textureRect2);
+            Sprite.setTextureRect(TRect2);
         }
-        else if (sprite.getTextureRect() == textureRect2)
+        else if (Sprite.getTextureRect() == TRect2)
         {
-            sprite.setTextureRect(textureRect3);
+            Sprite.setTextureRect(TRect3);
         }
-        else if (sprite.getTextureRect() == textureRect3)
+        else if (Sprite.getTextureRect() == TRect3)
         {
-            sprite.setTextureRect(textureRect1);
+            Sprite.setTextureRect(TRect1);
         }
-        clock.restart();
+        Clock.restart();
     }
 }
 
-void Background::render(sf::RenderWindow& window)
+void ABackground::render(sf::RenderWindow& window)
 {
-    window.draw(sprite);
+    window.draw(Sprite);
 }

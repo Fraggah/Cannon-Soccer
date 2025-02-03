@@ -2,20 +2,23 @@
 
 #include <SFML/Graphics.hpp>
 
-class Particle
+class AParticle
 {
 protected:
-    float x;
-    float y;
-    sf::Sprite sprite;
-    sf::Texture texture;
-    sf::IntRect textureRect1;
-    sf::IntRect textureRect2;
-    sf::IntRect textureRect3;
-    sf::Clock clock;
-    sf::Time time{ sf::milliseconds(50) };
+    float X;
+    float Y;
+    sf::Sprite Sprite;
+    sf::Texture Texture;
+    sf::IntRect TRect1;
+    sf::IntRect TRect2;
+    sf::IntRect TRect3;
+    sf::Clock Clock;
+    sf::Time Time{ sf::milliseconds(50) };
 public:
-    bool isActive = true;
+    bool bIsActive = true;
     virtual void update() = 0;
-    virtual void render(sf::RenderWindow& window);
+    virtual void render(sf::RenderWindow& Window);
 };
+
+//Clase padre para todas las particulas
+//Para saber del uso de los IntRet leer CanonShot

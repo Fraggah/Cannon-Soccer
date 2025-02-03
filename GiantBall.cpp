@@ -1,54 +1,57 @@
 #include "GiantBall.h"
 
-GiantBall::GiantBall(b2World& mundo, float _x1, float _y1, float _x2, float _y2)
+AGiantBall::AGiantBall(b2World& World, float _X1, float _Y1, float _X2, float _Y2)
 {
-    x1 = _x1;
-    y1 = _y1;
-    x2 = _x2;
-    y2 = _y2;
+    X1 = _X1;
+    Y1 = _Y1;
+    X2 = _X2;
+    Y2 = _Y2;
 
-    physics = Box2DHelper::CreateCircularDynamicBody(&mundo, 10, 0.2, 0.2, 0.2);
-    physics->SetTransform(b2Vec2(x1, y1), 0);
+    Physics = Box2DHelper::CreateCircularDynamicBody(&World, 10, 0.2, 0.2, 0.2);
+    Physics->SetTransform(b2Vec2(X1, Y1), 0);
 
-    texture.loadFromFile("sprites/giantBall.png");
-    sprite.setTexture(texture);
-    sprite.setOrigin(10, 10);
+    Texture.loadFromFile("sprites/giantBall.png");
+    Sprite.setTexture(Texture);
+    Sprite.setOrigin(10, 10);
 
-    hook = Box2DHelper::CreateRectangularStaticBody(&mundo, 10, 10);
-    hook->SetTransform(b2Vec2(x2, y2), 0);
+    Hook = Box2DHelper::CreateRectangularStaticBody(&World, 10, 10);
+    Hook->SetTransform(b2Vec2(X2, Y2), 0);
 
-    chainDef.Initialize(hook, physics, b2Vec2(hook->GetPosition().x, hook->GetPosition().y), b2Vec2(physics->GetPosition().x, physics->GetPosition().y));
-    chainDef.length = 42;
-    chainDef.maxLength = 44;
-    chainDef.minLength = 40;
-    chainDef.collideConnected = true;
-    chainDJ = (b2DistanceJoint*)mundo.CreateJoint(&chainDef);
+    //Inicializacion de la definicion y seteo de parametros
+    ChainDef.Initialize(Hook, Physics, b2Vec2(Hook->GetPosition().x, Hook->GetPosition().y), b2Vec2(Physics->GetPosition().x, Physics->GetPosition().y));
+    ChainDef.length = 42;
+    ChainDef.maxLength = 44;
+    ChainDef.minLength = 40;
+    ChainDef.collideConnected = true;
+    //Creacion del joint
+    ChainDJ = (b2DistanceJoint*)World.CreateJoint(&ChainDef);
 }
 
-void GiantBall::update()
+void AGiantBall::update()
 {
-    sprite.setPosition(physics->GetPosition().x, physics->GetPosition().y);
-    sprite.setRotation(physics->GetAngle() * 180 / b2_pi);
-    line[0] = {
-        sf::Vertex(sf::Vector2f(physics->GetPosition().x,physics->GetPosition().y), sf::Color(203, 232, 247))
+    Sprite.setPosition(Physics->GetPosition().x, Physics->GetPosition().y);
+    Sprite.setRotation(Physics->GetAngle() * 180 / b2_pi);
+    //Seteo la posicion de la linea, dandole la posicion de los cuerpos fisicos como parametros
+    Line[0] = {
+        sf::Vertex(sf::Vector2f(Physics->GetPosition().x,Physics->GetPosition().y), sf::Color(203, 232, 247))
     };
-    line[1] = {
-    sf::Vertex(sf::Vector2f(hook->GetPosition().x,hook->GetPosition().y), sf::Color(203, 232, 247))
+    Line[1] = {
+    sf::Vertex(sf::Vector2f(Hook->GetPosition().x,Hook->GetPosition().y), sf::Color(203, 232, 247))
     };
 }
 
-void GiantBall::render(sf::RenderWindow& window)
+void AGiantBall::render(sf::RenderWindow& Window)
 {
-    if (isEnabled)
+    if (bIsEnabled)
     {
-        window.draw(line, 2, sf::Lines);
-        window.draw(sprite);
+        Window.draw(Line, 2, sf::Lines);
+        Window.draw(Sprite);
     }
 }
 
-void GiantBall::setOnOff(bool on)
+void AGiantBall::setOnOff(bool On)
 {
-    isEnabled = on;
-    physics->SetEnabled(on);
-    hook->SetEnabled(on);
+    bIsEnabled = On;
+    Physics->SetEnabled(On);
+    Hook->SetEnabled(On);
 }

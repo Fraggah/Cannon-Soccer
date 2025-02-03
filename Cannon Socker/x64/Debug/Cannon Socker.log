@@ -1,13 +1,1 @@
-﻿  Game.cpp
-D:\Projects\Cannon Socker\LevelManager.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Projects\Cannon Socker\Ragdoll.h(8,19): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\Projects\Cannon Socker\Game.cpp(16,30): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-D:\Projects\Cannon Socker\Game.cpp(82,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Projects\Cannon Socker\Game.cpp(526,43): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\Projects\Cannon Socker\Game.cpp(527,43): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\Projects\Cannon Socker\Game.cpp(528,43): warning C4305: 'argument': truncation from 'double' to 'float'
-  main.cpp
-D:\Projects\Cannon Socker\LevelManager.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Projects\Cannon Socker\Ragdoll.h(8,19): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Generating Code...
-  Cannon Socker.vcxproj -> D:\Projects\Cannon Socker\x64\Debug\Cannon Socker.exe
+﻿  Cannon Socker.vcxproj -> D:\Projects\Cannon Socker\Cannon-Soccer\x64\Debug\Cannon Socker.exe

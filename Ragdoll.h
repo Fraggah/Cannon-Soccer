@@ -2,62 +2,66 @@
 #include <SFML/Graphics.hpp>
 #include "Box2DHelper.h"
 
-class Ragdoll : public Box2DHelper {
-    sf::Color ragdollColor;
-    float dec = 2;
-    float scale = 0.3;
+class ARagdoll : public Box2DHelper {
+    sf::Color RagdollColor;
+    float DBB = 2; //Distance between bodies
+    float Scale = 0.3; //Variable para cambiar el tamaño del ragdoll completo si no me convence su tamaño final y asi evito setear cada parte
     //Cabeza
-    float anchoCabeza = 5;
-    float altoCabeza = 5;
-    b2Body* bCabeza;
-    sf::RectangleShape sCabeza;
+    float HeadWidth = 5;
+    float HeadHeight = 5;
+    b2Body* bHead;
+    sf::RectangleShape sHead;
     //Tronco
-    float anchoTronco = 7;
-    float altoTronco = 10;
-    sf::RectangleShape sTronco;
+    float ChestWidth = 7;
+    float ChestHeight = 10;
+    sf::RectangleShape sChest;
     //Brazos
-    float anchoBrazo = 3;
-    float altoBrazo = 7;
+    float ArmWidth = 3;
+    float ArmHeight = 7;
     //Brazo Izquierdo
-    b2Body* bBrazoI;
-    sf::RectangleShape sBrazoI;
+    b2Body* bArmL;
+    sf::RectangleShape sArmL;
     ////Brazo Derecho
-    b2Body* bBrazoD;
-    sf::RectangleShape sBrazoD;
+    b2Body* bArmR;
+    sf::RectangleShape sArmR;
     //Piernas
-    float anchoPierna = 3;
-    float altoPierna = 10;
+    float LegWidth = 3;
+    float LegHeight = 10;
     //Pierna Izquierda
-    b2Body* bPiernaI;
-    sf::RectangleShape sPiernaI;
+    b2Body* bLegL;
+    sf::RectangleShape sLegL;
     //Pierna Derecha
-    b2Body* bPiernaD;
-    sf::RectangleShape sPiernaD;
+    b2Body* bLegR;
+    sf::RectangleShape sLegR;
     //Joints
     //Cuello
-    b2DistanceJointDef cuelloDef;
-    b2DistanceJoint* cuelloDJ;
+    b2DistanceJointDef NeckDef;
+    b2DistanceJoint* NeckDJ;
     //Hombros
     //Hombro Izquierdo
-    b2RevoluteJointDef hombroIDef;
-    b2RevoluteJoint* hombroIRJ;
+    b2RevoluteJointDef ShoulderLDef;
+    b2RevoluteJoint* ShoulderLRJ;
     //Hombro Derecho
-    b2RevoluteJointDef hombroDDef;
-    b2RevoluteJoint* hombroDRJ;
+    b2RevoluteJointDef ShoulderRDef;
+    b2RevoluteJoint* ShoulderRRJ;
     //Cadera
     //Parte Izquierda
-    b2RevoluteJointDef CPIDef;
-    b2RevoluteJoint* CPIRJ;
+    b2RevoluteJointDef HipLDef;
+    b2RevoluteJoint* HipLRJ;
     //Parte Derecha
-    b2RevoluteJointDef CPDDef;
-    b2RevoluteJoint* CPDRJ;
+    b2RevoluteJointDef HipRDef;
+    b2RevoluteJoint* HipRRJ;
 public:
-    b2Body* bTronco;
-    bool isEnabled = true;
-    Ragdoll(b2World& mundo, float x, float y);
-    ~Ragdoll();
+    b2Body* bChest;
+    bool bIsEnabled = true;
+    ARagdoll(b2World& World, float X, float Y);
+    ~ARagdoll();
     void setOff();
-    void applyImpulse(b2Vec2 dir, bool flag);
-    void render(sf::RenderWindow& window);
+    void applyImpulse(b2Vec2 Dir);
+    void render(sf::RenderWindow& Window);
     void update();
 };
+
+//Resumo: Aqui esta la creacion del ragdoll, este mismo esta compuesto por defirentes partes
+//siendo ellas una combinacion de cuerpos fisicos dinamicos joints para unirlos
+//En GiantBall explico como usar un joint.

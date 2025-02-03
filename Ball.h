@@ -1,20 +1,23 @@
 #include <SFML/Graphics.hpp>
 #include "Box2DHelper.h"
 
-class Ball : public Box2DHelper
+class ABall : public Box2DHelper
 {
-    float x;
-    float y;
-    sf::Texture texture;
+    float X;
+    float Y;
+    sf::Texture Texture;
 public:
-    b2Body* physics;
-    bool reached;
-    bool isEnabled = false;
-    float radius;
-    sf::Sprite sprite;
-    Ball(b2World& mundo, float _x, float _y);
+    b2Body* Physics;
+    //Variable para marcar como que la bola alcanzo el arco.
+    //Util para en la logica central contar si todas las bolas entraron en el arco
+    bool bIsReached;
+    //Variable para ejecutar o no logica (render, update, etc)
+    bool bIsEnabled = false;
+    float Radius;
+    sf::Sprite Sprite;
+    ABall(b2World& World, float _X, float _Y);
     void update();
-    void render(sf::RenderWindow& window);
+    void render(sf::RenderWindow& Window);
     void setOnOff(bool on);
 };
 

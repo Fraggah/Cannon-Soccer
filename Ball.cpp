@@ -1,35 +1,40 @@
 #include "Ball.h"
 
-Ball::Ball(b2World& mundo, float _x, float _y)
+ABall::ABall(b2World& World, float _X, float _Y)
 {
-    reached = false;
-    radius = 2.5;
-    x = _x;
-    y = _y;
-    physics = Box2DHelper::CreateCircularDynamicBody(&mundo, 2.5, 0.2, 0.2, 0.2);
-    physics->SetTransform(b2Vec2(x, y), 0);
+    bIsReached = false;
+    Radius = 2.5;
+    X = _X;
+    Y = _Y;
+    //Creacion del objeto fisico
+    Physics = Box2DHelper::CreateCircularDynamicBody(&World, 2.5, 0.2, 0.2, 0.2);
+    Physics->SetTransform(b2Vec2(X, Y), 0);
 
-    sprite.setOrigin(2.5, 2.5);
-    texture.loadFromFile("sprites/ball.png");
-    sprite.setTexture(texture);
+    //Los objetos fisicos por defecto tienen el origen en el centro
+    //Pero los sprites de SFML no, por lo que seteo el origen al centro 
+    //para que coincidan
+    Sprite.setOrigin(2.5, 2.5);
+    Texture.loadFromFile("sprites/ball.png");
+    Sprite.setTexture(Texture);
 }
 
-void Ball::update()
+void ABall::update()
 {
-    sprite.setPosition(physics->GetPosition().x, physics->GetPosition().y);
-    sprite.setRotation(physics->GetAngle() * 180 / b2_pi);
+    //Actualizacion de Locacion y Rotacion
+    Sprite.setPosition(Physics->GetPosition().x, Physics->GetPosition().y);
+    Sprite.setRotation(Physics->GetAngle() * 180 / b2_pi);
 }
 
-void Ball::render(sf::RenderWindow& window)
+void ABall::render(sf::RenderWindow& Window)
 {
-    if (isEnabled)
+    if (bIsEnabled)
     {
-        window.draw(sprite);
+        Window.draw(Sprite);
     }
 }
 
-void Ball::setOnOff(bool on)
+void ABall::setOnOff(bool on)
 {
-    isEnabled = on;
-    physics->SetEnabled(on);
+    bIsEnabled = on;
+    Physics->SetEnabled(on);
 }

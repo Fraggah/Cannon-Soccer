@@ -1,44 +1,44 @@
 #include "Hinge.h"
 
-Hinge::Hinge(b2World& mundo, float _x1, float _y1, float _x2, float _y2)
+AHinge::AHinge(b2World& World, float _X1, float _Y1, float _X2, float _Y2)
 {
-    x1 = _x1;
-    y1 = _y1;
-    x2 = _x2;
-    y2 = _y2;
+    X1 = _X1;
+    Y1 = _Y1;
+    X2 = _X2;
+    Y2 = _Y2;
 
-    physics = Box2DHelper::CreateRectangularDynamicBody(&mundo, 3, 25, 0.2, 0.2, 0.2);
-    physics->SetTransform(b2Vec2(x1, y1), 0);
+    Physics = Box2DHelper::CreateRectangularDynamicBody(&World, 3, 25, 0.2, 0.2, 0.2);
+    Physics->SetTransform(b2Vec2(X1, Y1), 0);
 
-    texture.loadFromFile("sprites/elicereact.png");
-    sprite.setTexture(texture);
-    sprite.setOrigin(1.5, 12.5);
+    Texture.loadFromFile("sprites/elicereact.png");
+    Sprite.setTexture(Texture);
+    Sprite.setOrigin(1.5, 12.5);
 
-    nail = Box2DHelper::CreateCircularStaticBody(&mundo, 1);
-    nail->SetTransform(b2Vec2(x2, y2), 0);
+    Nail = Box2DHelper::CreateCircularStaticBody(&World, 1);
+    Nail->SetTransform(b2Vec2(X2, Y2), 0);
 
-    revDef.Initialize(nail, physics, b2Vec2(nail->GetPosition().x, nail->GetPosition().y));
+    RevDef.Initialize(Nail, Physics, b2Vec2(Nail->GetPosition().x, Nail->GetPosition().y));
 
-    revRJ = (b2RevoluteJoint*)mundo.CreateJoint(&revDef);
+    RevRJ = (b2RevoluteJoint*)World.CreateJoint(&RevDef);
 }
 
-void Hinge::update()
+void AHinge::update()
 {
-    sprite.setPosition(physics->GetPosition().x, physics->GetPosition().y);
-    sprite.setRotation(physics->GetAngle() * 180 / b2_pi);
+    Sprite.setPosition(Physics->GetPosition().x, Physics->GetPosition().y);
+    Sprite.setRotation(Physics->GetAngle() * 180 / b2_pi);
 }
 
-void Hinge::render(sf::RenderWindow& window)
+void AHinge::render(sf::RenderWindow& Window)
 {
-    if (isEnabled)
+    if (bIsEnabled)
     {
-        window.draw(sprite);
+        Window.draw(Sprite);
     }
 }
 
-void Hinge::setOnOff(bool on)
+void AHinge::setOnOff(bool On)
 {
-    isEnabled = on;
-    physics->SetEnabled(on);
-    nail->SetEnabled(on);
+    bIsEnabled = On;
+    Physics->SetEnabled(On);
+    Nail->SetEnabled(On);
 }

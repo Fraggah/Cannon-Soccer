@@ -1,27 +1,27 @@
 #include "Box.h"
 
-Box::Box(b2World& mundo, float _x, float _y)
+ABox::ABox(b2World& World, float _X, float _Y)
 {
-    x = _x;
-    y = _y;
-    physics = Box2DHelper::CreateRectangularStaticBody(&mundo, 5, 5);
-    physics->SetTransform(b2Vec2(x, y), 0);
-    sprite.setOrigin(2.5, 2.5);
-    sprite.setPosition(_x, _y);
-    texture.loadFromFile("sprites/block.png");
-    sprite.setTexture(texture);
+    X = _X;
+    Y = _Y;
+    Physics = Box2DHelper::CreateRectangularStaticBody(&World, 5, 5);
+    Physics->SetTransform(b2Vec2(X, Y), 0);
+    Sprite.setOrigin(2.5, 2.5);
+    Sprite.setPosition(_X, _Y);
+    Texture.loadFromFile("sprites/block.png");
+    Sprite.setTexture(Texture);
 }
 
-void Box::render(sf::RenderWindow& window)
+void ABox::render(sf::RenderWindow& Window)
 {
-    if (isEnabled)
+    if (bIsEnabled)
     {
-        window.draw(sprite);
+        Window.draw(Sprite);
     }
 }
 
-void Box::setOnOff(bool on)
+void ABox::setOnOff(bool on)
 {
-    isEnabled = on;
-    physics->SetEnabled(on);
+    bIsEnabled = on;
+    Physics->SetEnabled(on);
 }

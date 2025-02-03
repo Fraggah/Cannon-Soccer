@@ -1,36 +1,36 @@
 #include "CanonShot.h"
 
-CanonShot::CanonShot(float _x, float _y)
+ACannonShoot::ACannonShoot(float _x, float _y)
 {
-    textureRect1.left = 0;
-    textureRect1.top = 0;
-    textureRect1.width = 10;
-    textureRect1.height = 10;
-    textureRect2.left = 10;
-    textureRect2.top = 0;
-    textureRect2.width = 10;
-    textureRect2.height = 10;
-    x = _x;
-    y = _y;
-    texture.loadFromFile("sprites/shot.png");
-    sprite.setTexture(texture);
-    sprite.setTextureRect(textureRect1);
-    sprite.setOrigin(5, 5);
-    sprite.setPosition(x, y);
+    TRect1.left = 0;
+    TRect1.top = 0;
+    TRect1.width = 10;
+    TRect1.height = 10;
+    TRect2.left = 10;
+    TRect2.top = 0;
+    TRect2.width = 10;
+    TRect2.height = 10;
+    X = _x;
+    Y = _y;
+    Texture.loadFromFile("sprites/shot.png");
+    Sprite.setTexture(Texture);
+    Sprite.setTextureRect(TRect1);
+    Sprite.setOrigin(5, 5);
+    Sprite.setPosition(X, Y);
 }
 
-void CanonShot::update()
+void ACannonShoot::update()
 {
-    if (clock.getElapsedTime() > time)
+    if (Clock.getElapsedTime() > Time)
     {
-        if (sprite.getTextureRect() == textureRect1)
+        if (Sprite.getTextureRect() == TRect1)
         {
-            sprite.setTextureRect(textureRect2);
+            Sprite.setTextureRect(TRect2);
         }
         else
         {
-            isActive = false;
+            bIsActive = false;
         }
-        clock.restart();
+        Clock.restart();
     }
 }

@@ -1,36 +1,40 @@
 #include "Elice.h"
 
-Elice::Elice(b2World& mundo, float _x, float _y)
+AElice::AElice(b2World& World, float _X, float _Y)
 {
-    isEnabled = true;
-    x = _x;
-    y = _y;
-    texture.loadFromFile("sprites/elipse.png");
-    sprite.setTexture(texture);
-    physics = Box2DHelper::CreateRectangularKinematicBody(&mundo, 25, 2);
-    physics->SetTransform(b2Vec2(x, y), 0);
-    sprite.setOrigin(12.5, 1);
+    bIsEnabled = true;
+    X = _X;
+    Y = _Y;
+    Texture.loadFromFile("sprites/elipse.png");
+    Sprite.setTexture(Texture);
+    Physics = Box2DHelper::CreateRectangularKinematicBody(&World, 25, 2);
+    Physics->SetTransform(b2Vec2(X, Y), 0);
+    Sprite.setOrigin(12.5, 1);
 }
 
-void Elice::update(float vel)
+void AElice::update(float Vel)
 {
-    float newAngle = physics->GetAngle() + vel;
-    physics->SetTransform(physics->GetPosition(), newAngle);
-    physics->GetFixtureList()->SetDensity(0);
-    sprite.setPosition(x, y);
-    sprite.setRotation(physics->GetAngle() * 180 / b2_pi);
+    //Creo una variable local para almacenar el valor del angulo a setear,
+    //le sumo la variable Vel para que el aungulo vaya aumentando constantemete
+    float NewAngle = Physics->GetAngle() + Vel;
+    //Seteo directamente el angulo en Physics ya el angulo es obtenido desde el mismo cuerpo fisico que usa radianes
+    Physics->SetTransform(Physics->GetPosition(), NewAngle);
+    Physics->GetFixtureList()->SetDensity(0);
+    Sprite.setPosition(X, Y);
+    //Para SFML debo convertir el valor del angulo a grados ya que Box2D utiliza radianes
+    Sprite.setRotation(Physics->GetAngle() * 180 / b2_pi);
 }
 
-void Elice::render(sf::RenderWindow& window)
+void AElice::render(sf::RenderWindow& Window)
 {
-    if (isEnabled)
+    if (bIsEnabled)
     {
-        window.draw(sprite);
+        Window.draw(Sprite);
     }
 }
 
-void Elice::setOnOff(bool on)
+void AElice::setOnOff(bool On)
 {
-    isEnabled = on;
-    physics->SetEnabled(on);
+    bIsEnabled = On;
+    Physics->SetEnabled(On);
 }

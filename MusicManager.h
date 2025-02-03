@@ -2,19 +2,23 @@
 
 #include <SFML/Audio.hpp>
 
-class MusicManager
+class AMusicManager
 {
-	sf::Music title;
-	sf::Music tutorial;
-	sf::Music level1;
-	sf::Music level2;
-	sf::Music level3;
-	sf::Music level4;
-	sf::Music finale;
+	sf::Music Title;
+	sf::Music Tutorial;
+	sf::Music Level1;
+	sf::Music Level2;
+	sf::Music Level3;
+	sf::Music Level4;
+	sf::Music Finale;
 public:
-	MusicManager();
+	AMusicManager();
 	void init();
 	void play();
-	void changeST(int theme);
+	void changeST(int Theme);
 };
+
+//Esto surgió de la idea de hacer un sistema de musica dinamica
+//Que vaya cambiando a medida que se avanza en el juego
+//Sumando instrumentos a la pista pero sin que esta se frene en ningun momento, solo en el loop
 

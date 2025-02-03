@@ -1,35 +1,37 @@
 #include "GoalText.h"
 
-GoalText::GoalText()
+AGoalText::AGoalText()
 {
-    sprite.setOrigin(75, 50);
-    sprite.setPosition(75, 50);
-    texture.loadFromFile("sprites/goalText.png");
-    sprite.setTexture(texture);
-    time = sf::seconds(.9);
-    clock.restart();
+    Sprite.setOrigin(75, 50);
+    Sprite.setPosition(75, 50);
+    Texture.loadFromFile("sprites/goalText.png");
+    Sprite.setTexture(Texture);
+    Time = sf::seconds(.9);
+    Clock.restart();
 }
 
-void GoalText::render(sf::RenderWindow& window)
+void AGoalText::render(sf::RenderWindow& Window)
 {
-    elapsedTime = clock.getElapsedTime();
-    progress = elapsedTime.asSeconds() * 4 / time.asSeconds();
+    ElapsedTime = Clock.getElapsedTime(); //Obtengo el tiempo en una variable
+    Progress = ElapsedTime.asSeconds() * 4 / Time.asSeconds();//Calculo el porcentaje del progreso
 
-    if (progress > 1.0f)
-        progress = 1.0f;
+    if (Progress > 1.0f) Progress = 1.0f; //Aseguro que el progreeso quede solo el 1
 
-    // Escala: crece desde 0.1 hasta 1.0
-    float scale = 0.1f + (progress * 0.9f);
-    sprite.setScale(scale, scale);
+    // Escalo desde 0.1 a 1
+    float Scale = 0.1f + (Progress * 0.9f);
+    Sprite.setScale(Scale, Scale);
 
-    // Alfa: disminuye de 255 a 0
-    int alpha = static_cast<int>(255 * (1.0f - progress));
-    if (alpha < 0) alpha = 0; // Asegura que no sea negativo
+    // mismo metodo en el canal alpha, llevandolo hacia opacidad 0
+    int Alpha = static_cast<int>(255 * (1.0f - Progress)); //Casteo la variable a int ya que es un float
+    if (Alpha < 0) Alpha = 0; // Aseguro que no sea negativo
 
-    sprite.setColor(sf::Color(255, 255, 255, alpha)); // Aplica la transparencia
+    Sprite.setColor(sf::Color(255, 255, 255, Alpha)); // Aplico opacidad
 
-    if (elapsedTime < time)
+
+    //Cada vez que se resetea Clock, se inicia la animacion
+    //Una vez pasado Time, deja de renderizarse.
+    if (ElapsedTime < Time)
     {
-        window.draw(sprite);
+        Window.draw(Sprite);
     }
 }

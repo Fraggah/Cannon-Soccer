@@ -1,17 +1,19 @@
 #include <SFML/Graphics.hpp>
 #include "Box2DHelper.h"
 
-class Elice
+class AElice
 {
-    float x;
-    float y;
-    sf::Sprite sprite;
-    sf::Texture texture;
+    float X;
+    float Y;
+    sf::Sprite Sprite;
+    sf::Texture Texture;
 public:
-    b2Body* physics;
-    bool isEnabled;
-    Elice(b2World& mundo, float _x, float _y);
-    void update(float vel);
-    void render(sf::RenderWindow& window);
-    void setOnOff(bool on);
+    b2Body* Physics;
+    bool bIsEnabled;
+    AElice(b2World& World, float _X, float _Y);
+    void update(float Vel);
+    void render(sf::RenderWindow& Window);
+    void setOnOff(bool On);
 };
+
+// Similar a Ball, pero con logica de rotacion en update()

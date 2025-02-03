@@ -1,10 +1,10 @@
 #include "Particle.h"
 
-void Particle::render(sf::RenderWindow& window)
+void AParticle::render(sf::RenderWindow& Window)
 {
-    if (isActive)
+    if (bIsActive)
     {
-        window.draw(sprite);
+        Window.draw(Sprite);
     }
 }
 

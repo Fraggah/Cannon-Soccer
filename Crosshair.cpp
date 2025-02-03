@@ -1,18 +1,18 @@
 #include "Crosshair.h"
 
-Crosshair::Crosshair()
+ACrosshair::ACrosshair()
 {
-    texture.loadFromFile("sprites/croshair.png");
-    sprite.setTexture(texture);
-    sprite.setOrigin(2.5, 2.5);
+    Texture.loadFromFile("sprites/croshair.png");
+    Sprite.setTexture(Texture);
+    Sprite.setOrigin(2.5, 2.5);
 }
 
-void Crosshair::update(sf::Vector2f mouse)
+void ACrosshair::update(sf::Vector2f Mouse)
 {
-    sprite.setPosition(mouse);
+    Sprite.setPosition(Mouse);
 }
 
-void Crosshair::render(sf::RenderWindow& window)
+void ACrosshair::render(sf::RenderWindow& Window)
 {
-    window.draw(sprite);
+    Window.draw(Sprite);
 }

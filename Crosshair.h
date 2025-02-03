@@ -1,11 +1,13 @@
 #include <SFML/Graphics.hpp>
 
-class Crosshair
+class ACrosshair
 {
-    sf::Sprite sprite;
-    sf::Texture texture;
+    sf::Sprite Sprite;
+    sf::Texture Texture;
 public:
-    Crosshair();
-    void update(sf::Vector2f mouse);
-    void render(sf::RenderWindow& window);
+    ACrosshair();
+    void update(sf::Vector2f Mouse);
+    void render(sf::RenderWindow& Window);
 };
+
+//es la mira, coloco un sprite para que siga la posicion del mouse

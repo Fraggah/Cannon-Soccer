@@ -1,10 +1,10 @@
 #include "UI.h"
 
-UI::UI()
+AUI::AUI()
 {
     font.loadFromFile("sprites/nes.otf");
 
-    // Configuración de textos
+    // Configuracion de textos
     pointsText.setFont(font);
     pointsText.setCharacterSize(24);
     pointsText.setScale(0.15f, 0.15f);
@@ -27,25 +27,25 @@ UI::UI()
     updateLevel(level);
 }
 
-void UI::updatePoints(int newPoints)
+void AUI::updatePoints(int newPoints)
 {
     points = newPoints;
     pointsText.setString("Points: " + std::to_string(points));
 }
 
-void UI::updateRagdolls(int newRagdolls)
+void AUI::updateRagdolls(int newRagdolls)
 {
     ragdolls = newRagdolls;
     ragdollText.setString("Ragdolls: " + std::to_string(ragdolls));
 }
 
-void UI::updateLevel(int newLevel)
+void AUI::updateLevel(int newLevel)
 {
     level = newLevel;
     levelText.setString("Level: " + std::to_string(level));
 }
 
-void UI::render(sf::RenderWindow& window)
+void AUI::render(sf::RenderWindow& window)
 {
     window.draw(pointsText);
     window.draw(ragdollText);

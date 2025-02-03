@@ -1,48 +1,48 @@
 #include "Explosion.h"
 
-Explosion::Explosion(float _x, float _y)
+AExplosion::AExplosion(float _X, float _Y)
 {
-    textureRect1.left = 0;
-    textureRect1.top = 0;
-    textureRect1.width = 10;
-    textureRect1.height = 10;
-    textureRect2.left = 10;
-    textureRect2.top = 0;
-    textureRect2.width = 10;
-    textureRect2.height = 10;
-    textureRect2.left = 20;
-    textureRect2.top = 0;
-    textureRect2.width = 10;
-    textureRect2.height = 10;
-    x = _x;
-    y = _y;
-    texture.loadFromFile("sprites/explosion.png");
-    sprite.setTexture(texture);
-    sprite.setTextureRect(textureRect1);
-    sprite.setOrigin(5, 10);
-    sprite.setPosition(x, y);
+    TRect1.left = 0;
+    TRect1.top = 0;
+    TRect1.width = 10;
+    TRect1.height = 10;
+    TRect2.left = 10;
+    TRect2.top = 0;
+    TRect2.width = 10;
+    TRect2.height = 10;
+    TRect2.left = 20;
+    TRect2.top = 0;
+    TRect2.width = 10;
+    TRect2.height = 10;
+    X = _X;
+    Y = _Y;
+    Texture.loadFromFile("sprites/explosion.png");
+    Sprite.setTexture(Texture);
+    Sprite.setTextureRect(TRect1);
+    Sprite.setOrigin(5, 10);
+    Sprite.setPosition(X, Y);
 
-    clock.restart();
+    Clock.restart();
 }
 
-void Explosion::update()
+void AExplosion::update()
 {
 
-    if (clock.getElapsedTime() > time)
+    if (Clock.getElapsedTime() > Time)
     {
-        clock.restart();
+        Clock.restart();
 
-        if (sprite.getTextureRect() == textureRect1)
+        if (Sprite.getTextureRect() == TRect1)
         {
-            sprite.setTextureRect(textureRect2);
+            Sprite.setTextureRect(TRect2);
         }
-        else if (sprite.getTextureRect() == textureRect2)
+        else if (Sprite.getTextureRect() == TRect2)
         {
-            sprite.setTextureRect(textureRect3);
+            Sprite.setTextureRect(TRect3);
         }
-        else if (sprite.getTextureRect() == textureRect3)
+        else if (Sprite.getTextureRect() == TRect3)
         {
-            isActive = false;
+            bIsActive = false;
         }
     }
 

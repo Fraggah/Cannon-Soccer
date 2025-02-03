@@ -1,9 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include "Particle.h"
 
-class BoxParticle : public Particle
+class ABoxParticle : public AParticle
 {
 public:
-    BoxParticle(float _x, float _y);
+    ABoxParticle(float _X, float _Y);
     void update() override;
 };
+
+//"Particula" al eliminar una caja, en realidad es una pequeña animacion
+//Pero funciona como particula.
+//Uitiliza la misma tecnica de animacion que Background pero sin loop

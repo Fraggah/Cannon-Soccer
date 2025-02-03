@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 
-class UI {
+class AUI {
     sf::Font font;
     sf::Text pointsText;
     sf::Text ragdollText;
@@ -10,9 +10,11 @@ public:
     int points = 0;
     int level = 0;
     int ragdolls = 0;
-    UI();
+    AUI();
     void updatePoints(int newPoints);
     void updateRagdolls(int newRagdolls);
     void updateLevel(int newLevel);
     void render(sf::RenderWindow& window);
 };
+
+//Clase para los elementos del HUD

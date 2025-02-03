@@ -1,0 +1,15 @@
+﻿  Game.cpp
+D:\Projects\Cannon Socker\Cannon-Soccer\LevelManager.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Game.cpp')
+  
+D:\Projects\Cannon Socker\Cannon-Soccer\Ragdoll.h(8,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Game.cpp')
+  
+D:\Projects\Cannon Socker\Cannon-Soccer\Game.cpp(16,30): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+D:\Projects\Cannon Socker\Cannon-Soccer\Game.cpp(83,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating code
+  4 of 675 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Cannon Socker.vcxproj -> D:\Projects\Cannon Socker\Cannon-Soccer\x64\Release\Cannon Socker.exe

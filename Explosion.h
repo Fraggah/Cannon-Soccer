@@ -1,9 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include "Particle.h"
 
-class Explosion : public Particle
+class AExplosion : public AParticle
 {
 public:
-    Explosion(float _x, float _y);
+    AExplosion(float _X, float _Y);
     void update() override;
 };
+
+// Igual a CanonShot

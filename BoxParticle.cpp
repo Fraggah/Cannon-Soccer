@@ -1,36 +1,36 @@
 #include "BoxParticle.h"
 
-BoxParticle::BoxParticle(float _x, float _y)
+ABoxParticle::ABoxParticle(float _x, float _y)
 {
-    textureRect1.left = 0;
-    textureRect1.top = 0;
-    textureRect1.width = 5;
-    textureRect1.height = 5;
-    textureRect2.left = 5;
-    textureRect2.top = 0;
-    textureRect2.width = 5;
-    textureRect2.height = 5;
-    x = _x;
-    y = _y;
-    texture.loadFromFile("sprites/blockdis.png");
-    sprite.setTexture(texture);
-    sprite.setTextureRect(textureRect1);
-    sprite.setOrigin(2.5, 2.5);
-    sprite.setPosition(x, y);
+    TRect1.left = 0;
+    TRect1.top = 0;
+    TRect1.width = 5;
+    TRect1.height = 5;
+    TRect2.left = 5;
+    TRect2.top = 0;
+    TRect2.width = 5;
+    TRect2.height = 5;
+    X = _x;
+    Y = _y;
+    Texture.loadFromFile("sprites/blockdis.png");
+    Sprite.setTexture(Texture);
+    Sprite.setTextureRect(TRect1);
+    Sprite.setOrigin(2.5, 2.5);
+    Sprite.setPosition(X, Y);
 }
 
-void BoxParticle::update()
+void ABoxParticle::update()
 {
-    if (clock.getElapsedTime() > time)
+    if (Clock.getElapsedTime() > Time)
     {
-        if (sprite.getTextureRect() == textureRect1)
+        if (Sprite.getTextureRect() == TRect1)
         {
-            sprite.setTextureRect(textureRect2);
+            Sprite.setTextureRect(TRect2);
         }
         else
         {
-            isActive = false;
+            bIsActive = false; //Desactiva para no loopear
         }
-        clock.restart();
+        Clock.restart();
     }
 }

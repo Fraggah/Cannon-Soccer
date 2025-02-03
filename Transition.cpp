@@ -1,91 +1,90 @@
 #include "Transition.h"
 
-Transition::Transition(sf::String level)
+ATransition::ATransition(sf::String Level)
 {
-    levelString = level;
-    font.loadFromFile("sprites/nes.otf");
-    levelText.setFont(font);
-    levelText.setString(levelString);
-    levelText.setCharacterSize(24);
-    levelText.setScale(.2, .2);
-    levelText.setPosition(63, 45);
-    levelText.setFillColor(sf::Color(203, 232, 247));
-    texture.loadFromFile("sprites/transition.png");
-    sprite.setTexture(texture);
-    sprite.setTextureRect(textureRect1);
-    sprite.setOrigin(75, 50);
-    sprite.setPosition(sprite.getOrigin());
+    LevelString = Level;
+    Font.loadFromFile("sprites/nes.otf");
+    LevelText.setFont(Font);
+    LevelText.setString(LevelString);
+    LevelText.setCharacterSize(24);
+    LevelText.setScale(.2, .2);
+    LevelText.setPosition(63, 45);
+    LevelText.setFillColor(sf::Color(203, 232, 247));
+    Texture.loadFromFile("sprites/transition.png");
+    Sprite.setTexture(Texture);
+    Sprite.setTextureRect(TRect1);
+    Sprite.setOrigin(75, 50);
+    Sprite.setPosition(Sprite.getOrigin());
 }
 
-void Transition::update()
+void ATransition::update()
 {
-    if (clock.getElapsedTime() > sf::milliseconds(100))
+    if (Clock.getElapsedTime() > sf::milliseconds(100))
     {
-        sprite.setTextureRect(textureRect2);
+        Sprite.setTextureRect(TRect2);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(200))
+    if (Clock.getElapsedTime() > sf::milliseconds(200))
     {
-        sprite.setTextureRect(textureRect3);
+        Sprite.setTextureRect(TRect3);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(300))
+    if (Clock.getElapsedTime() > sf::milliseconds(300))
     {
-        sprite.setTextureRect(textureRect4);
+        Sprite.setTextureRect(TRect4);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(400))
+    if (Clock.getElapsedTime() > sf::milliseconds(400))
     {
-        sprite.setTextureRect(textureRect5);
+        Sprite.setTextureRect(TRect5);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(500)) //Negro
+    if (Clock.getElapsedTime() > sf::milliseconds(500)) //Negro
     {
-        sprite.setTextureRect(textureRect6);
+        Sprite.setTextureRect(TRect6);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(600)) //Pasar texto
+    if (Clock.getElapsedTime() > sf::milliseconds(600)) //Pasar texto
     {
-        textActive = true;
+        TextActive = true;
     }
-    if (clock.getElapsedTime() > sf::milliseconds(1400)) //Pasar texto
+    if (Clock.getElapsedTime() > sf::milliseconds(1400)) //Pasar texto
     {
-        textActive = false;
-        //quiero aqui usar un delegate y enviar una señal para utilizar una funcion de la clase main
-        if (onTransitionEnd) { // intento de delegate
-            onTransitionEnd();
+        TextActive = false;
+        if (OnTransitionEnd) { // llamo a la funcion callback
+            OnTransitionEnd();
         }
     }
-    if (clock.getElapsedTime() > sf::milliseconds(1500))
+    if (Clock.getElapsedTime() > sf::milliseconds(1500))
     {
-        sprite.setScale(-1, 1);
-        sprite.setTextureRect(textureRect5);
+        Sprite.setScale(-1, 1);
+        Sprite.setTextureRect(TRect5);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(1600))
+    if (Clock.getElapsedTime() > sf::milliseconds(1600))
     {
-        sprite.setTextureRect(textureRect4);
+        Sprite.setTextureRect(TRect4);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(1700))
+    if (Clock.getElapsedTime() > sf::milliseconds(1700))
     {
-        sprite.setTextureRect(textureRect3);
+        Sprite.setTextureRect(TRect3);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(1800))
+    if (Clock.getElapsedTime() > sf::milliseconds(1800))
     {
-        sprite.setTextureRect(textureRect2);
+        Sprite.setTextureRect(TRect2);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(1900))
+    if (Clock.getElapsedTime() > sf::milliseconds(1900))
     {
-        sprite.setTextureRect(textureRect1);
+        Sprite.setTextureRect(TRect1);
     }
-    if (clock.getElapsedTime() > sf::milliseconds(2000))
+    if (Clock.getElapsedTime() > sf::milliseconds(2000))
     {
-        isActive = false;
+        bIsActive = false;
     }
 }
 
-void Transition::render(sf::RenderWindow& window)
+void ATransition::render(sf::RenderWindow& Window)
 {
-    if (isActive)
+    if (bIsActive)
     {
-        window.draw(sprite);
+        Window.draw(Sprite);
     }
-    if (textActive)
+    if (TextActive)
     {
-        window.draw(levelText);
+        Window.draw(LevelText);
     }
 }

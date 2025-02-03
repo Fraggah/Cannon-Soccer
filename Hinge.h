@@ -1,22 +1,26 @@
 #include <SFML/Graphics.hpp>
 #include "Box2DHelper.h"
 
-class Hinge {
-    float x1;
-    float y1;
-    float x2;
-    float y2;
-    sf::Sprite sprite;
-    sf::Texture texture;
+class AHinge {
+    float X1;
+    float Y1;
+    float X2;
+    float Y2;
+    sf::Sprite Sprite;
+    sf::Texture Texture;
 
 public:
-    b2RevoluteJointDef revDef;
-    b2RevoluteJoint* revRJ;
-    b2Body* nail;
-    b2Body* physics;
-    bool isEnabled = true;
-    Hinge(b2World& mundo, float _x1, float _y1, float _x2, float _y2);
+    b2RevoluteJointDef RevDef;
+    b2RevoluteJoint* RevRJ;
+    b2Body* Nail;
+    b2Body* Physics;
+    bool bIsEnabled = true;
+    AHinge(b2World& World, float _X1, float _Y1, float _X2, float _Y2);
     void update();
-    void render(sf::RenderWindow& window);
-    void setOnOff(bool on);
+    void render(sf::RenderWindow& Window);
+    void setOnOff(bool On);
 };
+
+// Similar a elice, pero en este caso utilizo un Revolute Joint
+// Este tiene funciones de toracion automaticas, pero en esta ocacion
+//solo girará por las fuerzas fisicas, su centro de rotacion en Nail, otro cuerpo fisico pero estatico

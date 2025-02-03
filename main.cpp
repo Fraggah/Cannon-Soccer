@@ -3,6 +3,6 @@
 int main()
 {
     Game* game = new Game();
-    game->run();
+    game->Run();
     return 0;
 }

@@ -1,23 +1,21 @@
 #include "Limits.h"
 
-Limits::Limits(b2World& mundo)
+ALimits::ALimits(b2World& World)
 {
-    // Físicas del Piso
-    groundBody = Box2DHelper::CreateRectangularStaticBody(&mundo, 500, 10);
-    groundBody->SetTransform(b2Vec2(50.0f, 95.0f), 0);
-    groundBody->GetFixtureList()->SetFriction(3);
+    GroundBody = Box2DHelper::CreateRectangularStaticBody(&World, 500, 10);
+    GroundBody->SetTransform(b2Vec2(50.0f, 95.0f), 0);
+    GroundBody->GetFixtureList()->SetFriction(3);
 
-    // Físicas de Paredes
-    leftWallBody = Box2DHelper::CreateRectangularStaticBody(&mundo, 10, 100);
-    leftWallBody->SetTransform(b2Vec2(5.0f, 50.0f), 0.0f);
-    rightWallBody = Box2DHelper::CreateRectangularStaticBody(&mundo, 10, 100);
-    rightWallBody->SetTransform(b2Vec2(145.0f, 50.0f), 0.0f);
+    LeftWallBody = Box2DHelper::CreateRectangularStaticBody(&World, 10, 100);
+    LeftWallBody->SetTransform(b2Vec2(5.0f, 50.0f), 0.0f);
+    RightWallBody = Box2DHelper::CreateRectangularStaticBody(&World, 10, 100);
+    RightWallBody->SetTransform(b2Vec2(145.0f, 50.0f), 0.0f);
 
-    texture.loadFromFile("sprites/background.png");
-    sprite.setTexture(texture);
+    Texture.loadFromFile("sprites/background.png");
+    Sprite.setTexture(Texture);
 }
 
-void Limits::render(sf::RenderWindow& window)
+void ALimits::render(sf::RenderWindow& Window)
 {
-    ;   window.draw(sprite);
+    Window.draw(Sprite);
 }

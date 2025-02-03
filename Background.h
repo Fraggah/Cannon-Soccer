@@ -1,16 +1,19 @@
 #include <SFML/Graphics.hpp>
 
-class Background
+class ABackground
 {
-    sf::Sprite sprite;
-    sf::Texture texture;
-    sf::IntRect textureRect1{ 0 , 0, 150, 100 };
-    sf::IntRect textureRect2{ 150 , 0, 150, 100 };
-    sf::IntRect textureRect3{ 300 , 0, 150, 100 };
-    sf::Clock clock;
-    sf::Time time{ sf::milliseconds(75) };
+    sf::Sprite Sprite;                          
+    sf::Texture Texture;
+    // Utilizo una tilemap de textura y luego recorto la parte necesaria
+    // para realizar animaciones con IntRect
+    sf::IntRect TRect1{ 0 , 0, 150, 100 };
+    sf::IntRect TRect2{ 150 , 0, 150, 100 };
+    sf::IntRect TRect3{ 300 , 0, 150, 100 };
+    // Variables para setear el framerate de la animación
+    sf::Clock Clock;
+    sf::Time Time{ sf::milliseconds(75) };
 public:
-    Background();
+    ABackground();
     void update();
     void render(sf::RenderWindow& window);
 };

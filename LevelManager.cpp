@@ -1,354 +1,367 @@
 #include "LevelManager.h"
 
-LevelManager::LevelManager(b2World& world)
+ALevelManager::ALevelManager(b2World& World)
 {
+    //Inicializacion de todos los elementos ordenados por nivel
     //Level 1
-    boxes_l1[0] = new Box(world, 50, 50);
-    balls_l1[0] = new Ball(world, 50, 45);
-    boxes_l1[1] = new Box(world, 75, 50);
-    balls_l1[1] = new Ball(world, 75, 45);
-    boxes_l1[2] = new Box(world, 75, 70);
-    balls_l1[2] = new Ball(world, 75, 65);
-    boxes_l1[3] = new Box(world, 100, 50);
-    balls_l1[3] = new Ball(world, 100, 45);
-    boxes_l1[4] = new Box(world, 100, 70);
-    balls_l1[4] = new Ball(world, 100, 65);
-    boxes_l1[5] = new Box(world, 100, 30);
-    balls_l1[5] = new Ball(world, 100, 25);
-    boxes_l1[6] = new Box(world, 50, 30);
-    balls_l1[6] = new Ball(world, 50, 25);
-    boxes_l1[7] = new Box(world, 50, 70);
-    balls_l1[7] = new Ball(world, 50, 65);
-    boxes_l1[8] = new Box(world, 75, 30);
-    balls_l1[8] = new Ball(world, 75, 25);
-    goal = new Goal(135, 85);
+    Boxes_l1[0] = new ABox(World, 50, 50);
+    Balls_l1[0] = new ABall(World, 50, 45);
+    Boxes_l1[1] = new ABox(World, 75, 50);
+    Balls_l1[1] = new ABall(World, 75, 45);
+    Boxes_l1[2] = new ABox(World, 75, 70);
+    Balls_l1[2] = new ABall(World, 75, 65);
+    Boxes_l1[3] = new ABox(World, 100, 50);
+    Balls_l1[3] = new ABall(World, 100, 45);
+    Boxes_l1[4] = new ABox(World, 100, 70);
+    Balls_l1[4] = new ABall(World, 100, 65);
+    Boxes_l1[5] = new ABox(World, 100, 30);
+    Balls_l1[5] = new ABall(World, 100, 25);
+    Boxes_l1[6] = new ABox(World, 50, 30);
+    Balls_l1[6] = new ABall(World, 50, 25);
+    Boxes_l1[7] = new ABox(World, 50, 70);
+    Balls_l1[7] = new ABall(World, 50, 65);
+    Boxes_l1[8] = new ABox(World, 75, 30);
+    Balls_l1[8] = new ABall(World, 75, 25);
+    Goal = new AGoal(135, 85);
 
     for (int i = 0; i < 9; i++)
     {
-        balls_l1[i]->setOnOff(false);
-        boxes_l1[i]->setOnOff(false);
+        Balls_l1[i]->setOnOff(false);
+        Boxes_l1[i]->setOnOff(false);
+        Boxes.push_back(Boxes_l1[i]);
     }
 
     //Level2
-    boxes_l2[1] = new Box(world, 45, 25);
-    balls_l2[1] = new Ball(world, 45, 20);
-    boxes_l2[0] = new Box(world, 55, 50);
-    balls_l2[0] = new Ball(world, 55, 45);
-    boxes_l2[2] = new Box(world, 65, 75);
-    balls_l2[2] = new Ball(world, 65, 70);
-    boxes_l2[5] = new Box(world, 85, 25);
-    balls_l2[5] = new Ball(world, 85, 20);
-    boxes_l2[3] = new Box(world, 95, 50);
-    balls_l2[3] = new Ball(world, 95, 45);
-    boxes_l2[4] = new Box(world, 105, 75);
-    balls_l2[4] = new Ball(world, 105, 70);
+    Boxes_l2[1] = new ABox(World, 45, 25);
+    Balls_l2[1] = new ABall(World, 45, 20);
+    Boxes_l2[0] = new ABox(World, 55, 50);
+    Balls_l2[0] = new ABall(World, 55, 45);
+    Boxes_l2[2] = new ABox(World, 65, 75);
+    Balls_l2[2] = new ABall(World, 65, 70);
+    Boxes_l2[5] = new ABox(World, 85, 25);
+    Balls_l2[5] = new ABall(World, 85, 20);
+    Boxes_l2[3] = new ABox(World, 95, 50);
+    Balls_l2[3] = new ABall(World, 95, 45);
+    Boxes_l2[4] = new ABox(World, 105, 75);
+    Balls_l2[4] = new ABall(World, 105, 70);
 
-    elices_l2[0] = new Elice(world, 65, 25);
-    elices_l2[1] = new Elice(world, 75, 50);
-    elices_l2[2] = new Elice(world, 85, 75);
+    Elices_l2[0] = new AElice(World, 65, 25);
+    Elices_l2[1] = new AElice(World, 75, 50);
+    Elices_l2[2] = new AElice(World, 85, 75);
 
     for (int i = 0; i < 3; i++)
     {
-        elices_l2[i]->setOnOff(false);
+        Elices_l2[i]->setOnOff(false);
     }
 
     for (int i = 0; i < 6; i++)
     {
-        balls_l2[i]->setOnOff(false);
-        boxes_l2[i]->setOnOff(false);
-        balls_l2[i]->physics->SetAwake(false);
+        Balls_l2[i]->setOnOff(false);
+        Boxes_l2[i]->setOnOff(false);
+        Boxes.push_back(Boxes_l2[i]);
+        Balls_l2[i]->Physics->SetAwake(false);
     }
 
     //Level3
-    gBall = new GiantBall(world, 75, 50, 75, 10);
-    gBall->setOnOff(false);
+    GiantBall = new AGiantBall(World, 75, 50, 75, 10);
+    GiantBall->setOnOff(false);
 
-    boxes_l3[0] = new Box(world, 130, 25);
-    balls_l3[0] = new Ball(world, 130, 20);
-    boxes_l3[1] = new Box(world, 130, 50);
-    balls_l3[1] = new Ball(world, 130, 45);
-    boxes_l3[2] = new Box(world, 130, 75);
-    balls_l3[2] = new Ball(world, 130, 70);
-    boxes_l3[3] = new Box(world, 45, 75);
-    balls_l3[3] = new Ball(world, 45, 70);
-    boxes_l3[4] = new Box(world, 75, 75);
-    balls_l3[4] = new Ball(world, 75, 70);
-    boxes_l3[5] = new Box(world, 105, 75);
-    balls_l3[5] = new Ball(world, 105, 70);
+    Boxes_l3[0] = new ABox(World, 130, 25);
+    Balls_l3[0] = new ABall(World, 130, 20);
+    Boxes_l3[1] = new ABox(World, 130, 50);
+    Balls_l3[1] = new ABall(World, 130, 45);
+    Boxes_l3[2] = new ABox(World, 130, 75);
+    Balls_l3[2] = new ABall(World, 130, 70);
+    Boxes_l3[3] = new ABox(World, 45, 75);
+    Balls_l3[3] = new ABall(World, 45, 70);
+    Boxes_l3[4] = new ABox(World, 75, 75);
+    Balls_l3[4] = new ABall(World, 75, 70);
+    Boxes_l3[5] = new ABox(World, 105, 75);
+    Balls_l3[5] = new ABall(World, 105, 70);
 
     for (int i = 0; i < 6; i++)
     {
-        balls_l3[i]->setOnOff(false);
-        boxes_l3[i]->setOnOff(false);
-        balls_l3[i]->physics->SetAwake(false);
+        Balls_l3[i]->setOnOff(false);
+        Boxes_l3[i]->setOnOff(false);
+        Boxes.push_back(Boxes_l3[i]);
+        Balls_l3[i]->Physics->SetAwake(false);
     }
 
     //Level4
-    boxes_l4[0] = new Box(world, 30, 35);
-    balls_l4[0] = new Ball(world, 30, 30);
-    boxes_l4[1] = new Box(world, 60, 35);
-    balls_l4[1] = new Ball(world, 60, 30);
-    boxes_l4[2] = new Box(world, 90, 35);
-    balls_l4[2] = new Ball(world, 90, 30);
-    boxes_l4[3] = new Box(world, 120, 35);
-    balls_l4[3] = new Ball(world, 120, 30);
-    boxes_l4[4] = new Box(world, 75, 25);
-    balls_l4[4] = new Ball(world, 75, 20);
+    Boxes_l4[0] = new ABox(World, 30, 35);
+    Balls_l4[0] = new ABall(World, 30, 30);
+    Boxes_l4[1] = new ABox(World, 60, 35);
+    Balls_l4[1] = new ABall(World, 60, 30);
+    Boxes_l4[2] = new ABox(World, 90, 35);
+    Balls_l4[2] = new ABall(World, 90, 30);
+    Boxes_l4[3] = new ABox(World, 120, 35);
+    Balls_l4[3] = new ABall(World, 120, 30);
+    Boxes_l4[4] = new ABox(World, 75, 25);
+    Balls_l4[4] = new ABall(World, 75, 20);
 
-    hinges_l4[0] = new Hinge(world, 30, 51.1, 30, 51.1);
-    hinges_l4[1] = new Hinge(world, 60, 51.1, 60, 51.1);
-    hinges_l4[2] = new Hinge(world, 90, 51.1, 90, 51.1);
-    hinges_l4[3] = new Hinge(world, 120, 51.1, 120, 51.1);
+    Hinges_l4[0] = new AHinge(World, 30, 51.1, 30, 51.1);
+    Hinges_l4[1] = new AHinge(World, 60, 51.1, 60, 51.1);
+    Hinges_l4[2] = new AHinge(World, 90, 51.1, 90, 51.1);
+    Hinges_l4[3] = new AHinge(World, 120, 51.1, 120, 51.1);
 
     for (int i = 0; i < 5; i++)
     {
-        balls_l4[i]->setOnOff(false);
-        boxes_l4[i]->setOnOff(false);
-        balls_l4[i]->physics->SetAwake(false);
+        Balls_l4[i]->setOnOff(false);
+        Boxes_l4[i]->setOnOff(false);
+        Boxes.push_back(Boxes_l4[i]);
+        Balls_l4[i]->Physics->SetAwake(false);
     }
 
     for (int i = 0; i < 4; i++)
     {
-        hinges_l4[i]->setOnOff(false);
-        hinges_l4[i]->physics->SetAwake(false);
+        Hinges_l4[i]->setOnOff(false);
+        Hinges_l4[i]->Physics->SetAwake(false);
     }
-    font.loadFromFile("sprites/nes.otf");
-    finalText.setFont(font);
-    finalText.setCharacterSize(24);
-    finalText.setScale(0.15f, 0.15f);
-    finalText.setPosition(20, 20);
-    finalText.setFillColor(sf::Color(203, 232, 247));
+    Font.loadFromFile("sprites/nes.otf");
+    FinalText.setFont(Font);
+    FinalText.setCharacterSize(24);
+    FinalText.setScale(0.15f, 0.15f);
+    FinalText.setPosition(20, 20);
+    FinalText.setFillColor(sf::Color(203, 232, 247));
+
+
 
 }
 
-void LevelManager::level1()
+//Seteo del nivel 1 activacion desactivacion y demas
+void ALevelManager::level1()
 {
     for (int i = 0; i < 9; i++)
     {
-        balls_l1[i]->setOnOff(true);
-        balls_l1[i]->physics->SetAwake(false);
-        balls_l1[i]->reached = false;
+        Balls_l1[i]->setOnOff(true);
+        Balls_l1[i]->Physics->SetAwake(false);
+        Balls_l1[i]->bIsReached = false;
     }
 
     for (int i = 0; i < 9; i++)
     {
-        boxes_l1[i]->setOnOff(true);
+        Boxes_l1[i]->setOnOff(true);
     }
 
-    boxes_l1[0]->physics->SetTransform(b2Vec2(50, 50), 0);
-    balls_l1[0]->physics->SetTransform(b2Vec2(50, 45), 0);
-    boxes_l1[1]->physics->SetTransform(b2Vec2(75, 50), 0);
-    balls_l1[1]->physics->SetTransform(b2Vec2(75, 45), 0);
-    boxes_l1[2]->physics->SetTransform(b2Vec2(75, 70), 0);
-    balls_l1[2]->physics->SetTransform(b2Vec2(75, 65), 0);
-    boxes_l1[3]->physics->SetTransform(b2Vec2(100, 50), 0);
-    balls_l1[3]->physics->SetTransform(b2Vec2(100, 45), 0);
-    boxes_l1[4]->physics->SetTransform(b2Vec2(100, 70), 0);
-    balls_l1[4]->physics->SetTransform(b2Vec2(100, 65), 0);
-    boxes_l1[5]->physics->SetTransform(b2Vec2(100, 30), 0);
-    balls_l1[5]->physics->SetTransform(b2Vec2(100, 25), 0);
-    boxes_l1[6]->physics->SetTransform(b2Vec2(50, 30), 0);
-    balls_l1[6]->physics->SetTransform(b2Vec2(50, 25), 0);
-    boxes_l1[7]->physics->SetTransform(b2Vec2(50, 70), 0);
-    balls_l1[7]->physics->SetTransform(b2Vec2(50, 65), 0);
-    boxes_l1[8]->physics->SetTransform(b2Vec2(75, 30), 0);
-    balls_l1[8]->physics->SetTransform(b2Vec2(75, 25), 0);
+    Boxes_l1[0]->Physics->SetTransform(b2Vec2(50, 50), 0);
+    Balls_l1[0]->Physics->SetTransform(b2Vec2(50, 45), 0);
+    Boxes_l1[1]->Physics->SetTransform(b2Vec2(75, 50), 0);
+    Balls_l1[1]->Physics->SetTransform(b2Vec2(75, 45), 0);
+    Boxes_l1[2]->Physics->SetTransform(b2Vec2(75, 70), 0);
+    Balls_l1[2]->Physics->SetTransform(b2Vec2(75, 65), 0);
+    Boxes_l1[3]->Physics->SetTransform(b2Vec2(100, 50), 0);
+    Balls_l1[3]->Physics->SetTransform(b2Vec2(100, 45), 0);
+    Boxes_l1[4]->Physics->SetTransform(b2Vec2(100, 70), 0);
+    Balls_l1[4]->Physics->SetTransform(b2Vec2(100, 65), 0);
+    Boxes_l1[5]->Physics->SetTransform(b2Vec2(100, 30), 0);
+    Balls_l1[5]->Physics->SetTransform(b2Vec2(100, 25), 0);
+    Boxes_l1[6]->Physics->SetTransform(b2Vec2(50, 30), 0);
+    Balls_l1[6]->Physics->SetTransform(b2Vec2(50, 25), 0);
+    Boxes_l1[7]->Physics->SetTransform(b2Vec2(50, 70), 0);
+    Balls_l1[7]->Physics->SetTransform(b2Vec2(50, 65), 0);
+    Boxes_l1[8]->Physics->SetTransform(b2Vec2(75, 30), 0);
+    Balls_l1[8]->Physics->SetTransform(b2Vec2(75, 25), 0);
 }
 
-void LevelManager::level2()
+void ALevelManager::level2()
 {
     for (int i = 0; i < 3; i++)
     {
-        elices_l2[i]->setOnOff(true);
+        Elices_l2[i]->setOnOff(true);
     }
 
     for (int i = 0; i < 6; i++)
     {
-        boxes_l2[i]->setOnOff(true);
-        balls_l2[i]->setOnOff(true);
-        balls_l2[i]->physics->SetAwake(false);
-        balls_l2[i]->reached = false;
+        Boxes_l2[i]->setOnOff(true);
+        Balls_l2[i]->setOnOff(true);
+        Balls_l2[i]->Physics->SetAwake(false);
+        Balls_l2[i]->bIsReached = false;
     }
 
-    boxes_l2[1]->physics->SetTransform(b2Vec2(45, 25), 0);
-    balls_l2[1]->physics->SetTransform(b2Vec2(45, 20), 0);
-    boxes_l2[0]->physics->SetTransform(b2Vec2(55, 50), 0);
-    balls_l2[0]->physics->SetTransform(b2Vec2(55, 45), 0);
-    boxes_l2[2]->physics->SetTransform(b2Vec2(65, 75), 0);
-    balls_l2[2]->physics->SetTransform(b2Vec2(65, 70), 0);
-    boxes_l2[5]->physics->SetTransform(b2Vec2(85, 25), 0);
-    balls_l2[5]->physics->SetTransform(b2Vec2(85, 20), 0);
-    boxes_l2[3]->physics->SetTransform(b2Vec2(95, 50), 0);
-    balls_l2[3]->physics->SetTransform(b2Vec2(95, 45), 0);
-    boxes_l2[4]->physics->SetTransform(b2Vec2(105, 75), 0);
-    balls_l2[4]->physics->SetTransform(b2Vec2(105, 70), 0);
+    Boxes_l2[1]->Physics->SetTransform(b2Vec2(45, 25), 0);
+    Balls_l2[1]->Physics->SetTransform(b2Vec2(45, 20), 0);
+    Boxes_l2[0]->Physics->SetTransform(b2Vec2(55, 50), 0);
+    Balls_l2[0]->Physics->SetTransform(b2Vec2(55, 45), 0);
+    Boxes_l2[2]->Physics->SetTransform(b2Vec2(65, 75), 0);
+    Balls_l2[2]->Physics->SetTransform(b2Vec2(65, 70), 0);
+    Boxes_l2[5]->Physics->SetTransform(b2Vec2(85, 25), 0);
+    Balls_l2[5]->Physics->SetTransform(b2Vec2(85, 20), 0);
+    Boxes_l2[3]->Physics->SetTransform(b2Vec2(95, 50), 0);
+    Balls_l2[3]->Physics->SetTransform(b2Vec2(95, 45), 0);
+    Boxes_l2[4]->Physics->SetTransform(b2Vec2(105, 75), 0);
+    Balls_l2[4]->Physics->SetTransform(b2Vec2(105, 70), 0);
 
-    elices_l2[0]->physics->SetTransform(b2Vec2(65, 25), 0);
-    elices_l2[1]->physics->SetTransform(b2Vec2(75, 50), 0);
-    elices_l2[2]->physics->SetTransform(b2Vec2(85, 70), 0);
+    Elices_l2[0]->Physics->SetTransform(b2Vec2(65, 25), 0);
+    Elices_l2[1]->Physics->SetTransform(b2Vec2(75, 50), 0);
+    Elices_l2[2]->Physics->SetTransform(b2Vec2(85, 70), 0);
 }
 
-void LevelManager::level3()
+void ALevelManager::level3()
 {
 
-    gBall->setOnOff(true);
-    gBall->physics->SetAwake(false);
-    gBall->physics->SetTransform(b2Vec2(75, 50), 0);
+    GiantBall->setOnOff(true);
+    GiantBall->Physics->SetAwake(false);
+    GiantBall->Physics->SetTransform(b2Vec2(75, 50), 0);
 
     for (int i = 0; i < 6; i++)
     {
-        boxes_l3[i]->setOnOff(true);
-        balls_l3[i]->setOnOff(true);
-        balls_l3[i]->physics->SetAwake(false);
-        balls_l3[i]->reached = false;
+        Boxes_l3[i]->setOnOff(true);
+        Balls_l3[i]->setOnOff(true);
+        Balls_l3[i]->Physics->SetAwake(false);
+        Balls_l3[i]->bIsReached = false;
     }
 
-    boxes_l3[0]->physics->SetTransform(b2Vec2(130, 25), 0);
-    balls_l3[0]->physics->SetTransform(b2Vec2(130, 20), 0);
-    boxes_l3[1]->physics->SetTransform(b2Vec2(130, 50), 0);
-    balls_l3[1]->physics->SetTransform(b2Vec2(130, 45), 0);
-    boxes_l3[2]->physics->SetTransform(b2Vec2(130, 75), 0);
-    balls_l3[2]->physics->SetTransform(b2Vec2(130, 70), 0);
-    boxes_l3[3]->physics->SetTransform(b2Vec2(45, 75), 0);
-    balls_l3[3]->physics->SetTransform(b2Vec2(45, 70), 0);
-    boxes_l3[4]->physics->SetTransform(b2Vec2(75, 75), 0);
-    balls_l3[4]->physics->SetTransform(b2Vec2(75, 70), 0);
-    boxes_l3[5]->physics->SetTransform(b2Vec2(105, 75), 0);
-    balls_l3[5]->physics->SetTransform(b2Vec2(105, 70), 0);
+    Boxes_l3[0]->Physics->SetTransform(b2Vec2(130, 25), 0);
+    Balls_l3[0]->Physics->SetTransform(b2Vec2(130, 20), 0);
+    Boxes_l3[1]->Physics->SetTransform(b2Vec2(130, 50), 0);
+    Balls_l3[1]->Physics->SetTransform(b2Vec2(130, 45), 0);
+    Boxes_l3[2]->Physics->SetTransform(b2Vec2(130, 75), 0);
+    Balls_l3[2]->Physics->SetTransform(b2Vec2(130, 70), 0);
+    Boxes_l3[3]->Physics->SetTransform(b2Vec2(45, 75), 0);
+    Balls_l3[3]->Physics->SetTransform(b2Vec2(45, 70), 0);
+    Boxes_l3[4]->Physics->SetTransform(b2Vec2(75, 75), 0);
+    Balls_l3[4]->Physics->SetTransform(b2Vec2(75, 70), 0);
+    Boxes_l3[5]->Physics->SetTransform(b2Vec2(105, 75), 0);
+    Balls_l3[5]->Physics->SetTransform(b2Vec2(105, 70), 0);
 }
 
-void LevelManager::level4()
+void ALevelManager::level4()
 {
     for (int i = 0; i < 4; i++)
     {
-        hinges_l4[i]->setOnOff(true);
-        hinges_l4[i]->physics->SetAwake(false);
+        Hinges_l4[i]->setOnOff(true);
+        Hinges_l4[i]->Physics->SetAwake(false);
     }
 
     for (int i = 0; i < 5; i++)
     {
-        boxes_l4[i]->setOnOff(true);
-        balls_l4[i]->setOnOff(true);
-        balls_l4[i]->physics->SetAwake(false);
-        balls_l4[i]->reached = false;
+        Boxes_l4[i]->setOnOff(true);
+        Balls_l4[i]->setOnOff(true);
+        Balls_l4[i]->Physics->SetAwake(false);
+        Balls_l4[i]->bIsReached = false;
     }
 
-    boxes_l4[0]->physics->SetTransform(b2Vec2(30, 35), 0);
-    balls_l4[0]->physics->SetTransform(b2Vec2(30, 30), 0);
-    boxes_l4[1]->physics->SetTransform(b2Vec2(60, 35), 0);
-    balls_l4[1]->physics->SetTransform(b2Vec2(60, 30), 0);
-    boxes_l4[2]->physics->SetTransform(b2Vec2(90, 35), 0);
-    balls_l4[2]->physics->SetTransform(b2Vec2(90, 30), 0);
-    boxes_l4[3]->physics->SetTransform(b2Vec2(120, 35), 0);
-    balls_l4[3]->physics->SetTransform(b2Vec2(120, 30), 0);
-    boxes_l4[4]->physics->SetTransform(b2Vec2(75, 25), 0);
-    balls_l4[4]->physics->SetTransform(b2Vec2(75, 20), 0);
+    Boxes_l4[0]->Physics->SetTransform(b2Vec2(30, 35), 0);
+    Balls_l4[0]->Physics->SetTransform(b2Vec2(30, 30), 0);
+    Boxes_l4[1]->Physics->SetTransform(b2Vec2(60, 35), 0);
+    Balls_l4[1]->Physics->SetTransform(b2Vec2(60, 30), 0);
+    Boxes_l4[2]->Physics->SetTransform(b2Vec2(90, 35), 0);
+    Balls_l4[2]->Physics->SetTransform(b2Vec2(90, 30), 0);
+    Boxes_l4[3]->Physics->SetTransform(b2Vec2(120, 35), 0);
+    Balls_l4[3]->Physics->SetTransform(b2Vec2(120, 30), 0);
+    Boxes_l4[4]->Physics->SetTransform(b2Vec2(75, 25), 0);
+    Balls_l4[4]->Physics->SetTransform(b2Vec2(75, 20), 0);
 
-    hinges_l4[0]->physics->SetTransform(b2Vec2(30, 51.1), 0);
-    hinges_l4[1]->physics->SetTransform(b2Vec2(60, 51.1), 0);
-    hinges_l4[2]->physics->SetTransform(b2Vec2(90, 51.1), 0);
-    hinges_l4[3]->physics->SetTransform(b2Vec2(120, 51.1), 0);
+    Hinges_l4[0]->Physics->SetTransform(b2Vec2(30, 51.1), 0);
+    Hinges_l4[1]->Physics->SetTransform(b2Vec2(60, 51.1), 0);
+    Hinges_l4[2]->Physics->SetTransform(b2Vec2(90, 51.1), 0);
+    Hinges_l4[3]->Physics->SetTransform(b2Vec2(120, 51.1), 0);
 
 }
-
-void LevelManager::final()
+//Nivel Pantalla final
+void ALevelManager::final()
 {
-    finalText.setString("                 Results\n\n\nPoints : " + std::to_string(pointsFinal) + "\n\nRagdolls Shooted : " + std::to_string(ragdollsFinal) + "\n\n\n\n\n\n            Click to continue");
-    isFinal = true;
+    FinalText.setString("                 Results\n\n\nPoints : " + std::to_string(PointsFinal) + "\n\nRagdolls Shooted : " + std::to_string(RagdollsFinal) + "\n\n\n\n\n\n            Click to continue");
+    bIsFinal = true;
 }
-
-void LevelManager::update()
+//Update general
+void ALevelManager::update()
 {
     for (int i = 0; i < 9; i++)
     {
-        balls_l1[i]->update();
+        Balls_l1[i]->update();
     }
     for (int i = 0; i < 6; i++)
     {
-        balls_l2[i]->update();
-        balls_l3[i]->update();
+        Balls_l2[i]->update();
+        Balls_l3[i]->update();
     }
     for (int i = 0; i < 5; i++)
     {
-        balls_l4[i]->update();
+        Balls_l4[i]->update();
     }
     for (int i = 0; i < 4; i++)
     {
-        hinges_l4[i]->update();
-    }
-    gBall->update();
-    goal->update();
-}
-
-void LevelManager::render(sf::RenderWindow& window)
-{
-    for (int i = 0; i < 9; i++)
-    {
-        balls_l1[i]->render(window);
-        boxes_l1[i]->render(window);
+        Hinges_l4[i]->update();
     }
     for (int i = 0; i < 3; i++)
     {
-        elices_l2[i]->render(window);
+        Elices_l2[i]->update(.1);
+    }
+
+    GiantBall->update();
+    Goal->update();
+}
+
+void ALevelManager::render(sf::RenderWindow& Window)
+{
+    for (int i = 0; i < 9; i++)
+    {
+        Balls_l1[i]->render(Window);
+        Boxes_l1[i]->render(Window);
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        Elices_l2[i]->render(Window);
     }
 
     for (int i = 0; i < 6; i++)
     {
-        balls_l2[i]->render(window);
-        boxes_l2[i]->render(window);
-        balls_l3[i]->render(window);
-        boxes_l3[i]->render(window);
+        Balls_l2[i]->render(Window);
+        Boxes_l2[i]->render(Window);
+        Balls_l3[i]->render(Window);
+        Boxes_l3[i]->render(Window);
     }
     for (int i = 0; i < 4; i++)
     {
-        hinges_l4[i]->render(window);
+        Hinges_l4[i]->render(Window);
     }
     for (int i = 0; i < 5; i++)
     {
-        balls_l4[i]->render(window);
-        boxes_l4[i]->render(window);
+        Balls_l4[i]->render(Window);
+        Boxes_l4[i]->render(Window);
     }
-    gBall->render(window);
-    window.draw(goal->sprite);
+    GiantBall->render(Window);
+    Window.draw(Goal->Sprite);
 
-    if (isFinal)
+    if (bIsFinal)
     {
-        window.draw(finalText);
+        Window.draw(FinalText);
     }
 }
-
-void LevelManager::clear(b2World* world)
+//Funcion para desactivar todo
+void ALevelManager::clear()
 {
-    for (size_t i = 0; i < ragdolls.size(); ++i) {
-        Ragdoll* ragdollPtr = ragdolls[i];
-        Ragdoll& ragdoll = *ragdollPtr;
+    for (size_t i = 0; i < Ragdolls.size(); ++i) {
+        ARagdoll* ragdollPtr = Ragdolls[i];
+        ARagdoll& ragdoll = *ragdollPtr;
         ragdoll.setOff();
     }
     for (int i = 0; i < 9; i++)
     {
-        balls_l1[i]->setOnOff(false);
-        boxes_l1[i]->setOnOff(false);
+        Balls_l1[i]->setOnOff(false);
+        Boxes_l1[i]->setOnOff(false);
     }
     for (int i = 0; i < 3; i++)
     {
-        elices_l2[i]->setOnOff(false);
+        Elices_l2[i]->setOnOff(false);
     }
 
     for (int i = 0; i < 6; i++)
     {
-        balls_l2[i]->setOnOff(false);
-        boxes_l2[i]->setOnOff(false);
-        balls_l3[i]->setOnOff(false);
-        boxes_l3[i]->setOnOff(false);
+        Balls_l2[i]->setOnOff(false);
+        Boxes_l2[i]->setOnOff(false);
+        Balls_l3[i]->setOnOff(false);
+        Boxes_l3[i]->setOnOff(false);
     }
     for (int i = 0; i < 5; i++)
     {
-        balls_l4[i]->setOnOff(false);
-        boxes_l4[i]->setOnOff(false);
+        Balls_l4[i]->setOnOff(false);
+        Boxes_l4[i]->setOnOff(false);
     }
     for (int i = 0; i < 4; i++)
     {
-        hinges_l4[i]->setOnOff(false);
+        Hinges_l4[i]->setOnOff(false);
     }
-    gBall->setOnOff(false);
+    GiantBall->setOnOff(false);
 }
